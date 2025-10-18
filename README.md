@@ -73,3 +73,10 @@ QueryVault/
 
 This project is released under the MIT License.
 
+## Developed By
+*ASTROVEX*
+
+## For More Information
+*Contact* -- saisricharankolli@gmail.com
+*Linkedin* -- linkedin.com/in/charan-kolli/
+
