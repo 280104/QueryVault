@@ -12,7 +12,7 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import html
 
-# ---------- CONFIG ----------
+#  CONFIG 
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 GEN_MODEL = "google/flan-t5-small"
 INDEX_DIR = "index_store"
@@ -23,7 +23,7 @@ CHUNK_OVERLAP = 1
 os.makedirs(INDEX_DIR, exist_ok=True)
 os.makedirs(PDF_DIR, exist_ok=True)
 
-# ---------- LOAD MODELS ----------
+#       LOAD MODELS 
 @st.cache_resource
 def load_embedding_model():
     return SentenceTransformer(EMBED_MODEL_NAME)
@@ -40,7 +40,7 @@ EMBED_DIM = emb_model.get_sentence_embedding_dimension()
 index_path = os.path.join(INDEX_DIR, "faiss.index")
 meta_path = os.path.join(INDEX_DIR, "metadatas.pkl")
 
-# ---------- FAISS helpers ----------
+#         FAISS helpers 
 def create_index():
     return faiss.IndexFlatIP(EMBED_DIM)
 
@@ -62,7 +62,7 @@ if index is None:
     index = create_index()
     metadatas = []
 
-# ---------- UTILS ----------
+#        UTILS 
 def pdf_to_chunks(file_path, chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP):
     reader = PdfReader(file_path)
     chunks = []
@@ -167,7 +167,7 @@ def synthesize_answer(question, contexts):
     safe_out = html.escape(out).replace("\n", "<br>")
     return safe_out
 
-# ---------- STREAMLIT UI ----------
+#              STREAMLIT UI 
 st.set_page_config(page_title="QueryVault", layout="wide")
 
 bg_color = "#f8f9fa"
